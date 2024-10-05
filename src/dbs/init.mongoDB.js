@@ -5,7 +5,7 @@ const config = require("dotenv");
 config.config();
 
 // Cách connect MongoDB mới sử dụng design pattern strategy
-const connectString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@shopdev.93foh.mongodb.net/`;
+const connectString = process.env.MONGODB_CONNECTION || "";
 
 class Database {
    constructor() {
