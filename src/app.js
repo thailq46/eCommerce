@@ -12,6 +12,7 @@ app.use(compression());
 // #endregion
 
 // Init DB
+require("./dbs/init.mongoDB");
 
 // Init Routes
 app.get("/", (req, res) => {

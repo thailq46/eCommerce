@@ -1,4 +1,7 @@
 const app = require("./src/app");
+// const os = require("os");
+// console.log("Length ThreadPool: ", os.cpus().length);
+// console.log("Length ThreadPool: ", os.cpus());
 
 const PORT = 3055;
 
