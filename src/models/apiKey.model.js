@@ -12,19 +12,16 @@ const apiKeySchema = new Schema(
          required: true,
          unique: true,
       },
+      // Xem key này có hoạt động hay không
       status: {
          type: Boolean,
          default: true,
       },
+      // User cầm key này để add vào header của request và verify nó
       permissions: {
          type: [String],
          required: true,
          enum: ["0000", "1111", "2222"],
-      },
-      createdAt: {
-         type: Date,
-         default: Date.now,
-         expires: "30d",
       },
    },
    {timestamps: true, collection: COLLECTION_NAME}
