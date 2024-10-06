@@ -1,8 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
 const {coutConnect} = require("../helpers/check.connect");
-const config = require("dotenv");
-config.config();
 
 // Cách connect MongoDB mới sử dụng design pattern strategy
 const connectString = process.env.MONGODB_CONNECTION || "";

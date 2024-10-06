@@ -1,27 +1,31 @@
 {
-  "name": "ecommerce-be",
-  "version": "1.0.0",
-  "main": "server.js",
-  "directories": {
-    "doc": "docs"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "express": "^4.21.0",
-    "mongodb": "^6.9.0"
-  },
-  "devDependencies": {
-    "compression": "^1.7.4",
-    "dotenv": "^16.4.5",
-    "helmet": "^8.0.0",
-    "mongoose": "^8.7.0",
-    "morgan": "^1.10.0"
-  }
+   "name": "ecommerce-be",
+   "version": "1.0.0",
+   "main": "server.js",
+   "directories": {
+      "doc": "docs"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node server.js --watch"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "description": "",
+   "dependencies": {
+      "bcrypt": "^5.1.1",
+      "crypto": "^1.0.1",
+      "express": "^4.21.0",
+      "jsonwebtoken": "^9.0.2",
+      "lodash": "^4.17.21",
+      "mongodb": "^6.9.0"
+   },
+   "devDependencies": {
+      "compression": "^1.7.4",
+      "dotenv": "^16.4.5",
+      "helmet": "^8.0.0",
+      "mongoose": "^8.7.0",
+      "morgan": "^1.10.0"
+   }
 }
