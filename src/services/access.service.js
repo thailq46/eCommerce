@@ -1,7 +1,7 @@
 "use strict";
 const shopModel = require("../models/shop.model");
 const bycrypt = require("bcrypt");
-const crypto = require("crypto");
+const crypto = require("node:crypto");
 const KeyTokenService = require("./keyToken.service");
 const {createTokenPair} = require("../auth/authUtils");
 const {getInfoData} = require("../utils");
@@ -35,37 +35,41 @@ class AccessService {
          });
          if (newShop) {
             // Created privateKey and publicKey Sử dụng thuật toán Bất đối xứng (privateKey tạo xong đẩy cho user -> sign token, publicKey lưu hệ thống -> verify token Vì lấy đc publicKey nhưng ko có nhiệm vụ để sign token mà chỉ để verify token -> Nếu mà hack đc hệ thống thì phải biết được cả 2)
-            const {privateKey, publicKey} = crypto.generateKeyPairSync("rsa", {
-               modulusLength: 4096,
-               publicKeyEncoding: {
-                  type: "pkcs1", // pkcs1 là public key cryptograp standard 1
-                  format: "pem",
-               },
-               privateKeyEncoding: {
-                  type: "pkcs1",
-                  format: "pem",
-               },
-            });
+            // Sử dụng thuật toán bất đối xứng
+            // const {privateKey, publicKey} = crypto.generateKeyPairSync("rsa", {
+            //    modulusLength: 4096,
+            //    publicKeyEncoding: {
+            //       type: "pkcs1", // pkcs1 là public key cryptograp standard 1
+            //       format: "pem",
+            //    },
+            //    privateKeyEncoding: {
+            //       type: "pkcs1",
+            //       format: "pem",
+            //    },
+            // });
+
+            // Sử dụng thuật toán đối xứng
+            const privateKey = crypto.randomBytes(64).toString("hex");
+            const publicKey = crypto.randomBytes(64).toString("hex");
 
             console.log({privateKey, publicKey});
 
-            const publicKeyString = await KeyTokenService.createKeyToken({
+            const keyStore = await KeyTokenService.createKeyToken({
                userId: newShop._id,
                publicKey,
+               privateKey,
             });
 
-            if (!publicKeyString) {
+            if (!keyStore) {
                return {
                   code: "xxxx",
-                  message: "publicKeyString error!",
+                  message: "keyStore error!",
                };
             }
 
-            const publicKeyObject = crypto.createPublicKey(publicKeyString);
-
             const tokens = await createTokenPair(
                {userId: newShop._id, email},
-               publicKeyObject,
+               publicKey,
                privateKey
             );
             console.log("Created Tokens Success:: ", tokens);

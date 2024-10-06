@@ -15,6 +15,10 @@ const keyTokenSchema = new Schema(
          type: String,
          required: true,
       },
+      privateKey: {
+         type: String,
+         required: true,
+      },
       // Refresh token này detect những hacker sd trái phép token của user
       refreshToken: {
          type: Array,
