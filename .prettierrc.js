@@ -1,5 +1,5 @@
 module.exports = {
-  quoteProps: "consistent",
-  bracketSpacing: false,
-  endOfLine: "lf",
+   quoteProps: "consistent",
+   bracketSpacing: false,
+   endOfLine: "lf",
 };

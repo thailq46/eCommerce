@@ -20,9 +20,14 @@ const keyTokenSchema = new Schema(
          required: true,
       },
       // Refresh token này detect những hacker sd trái phép token của user
-      refreshToken: {
+      refreshTokensUsed: {
          type: Array,
-         default: [],
+         default: [], // Những refreshToken đã sử dụng
+      },
+      // refreshToken đang được sử dụng
+      refreshToken: {
+         type: String,
+         default: null,
       },
    },
    {timestamps: true, collection: COLLECTION_NAME}
