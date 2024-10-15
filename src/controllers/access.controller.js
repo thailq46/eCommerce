@@ -8,9 +8,6 @@ class AccessController {
       new SuccessResponse({
          message: "Login successfully OK!",
          metadata: await AccessService.signIn(req.body),
-         options: {
-            limit: 10,
-         },
       }).send(res);
    };
 
@@ -22,6 +19,15 @@ class AccessController {
          options: {
             limit: 10,
          },
+      }).send(res);
+   };
+
+   logout = async (req, res, next) => {
+      console.log("req.keyStore", req.keyStore);
+      console.log("[P]::Logout::", req.body);
+      new SuccessResponse({
+         message: "Logout successfully OK!",
+         metadata: await AccessService.logout(req.keyStore),
       }).send(res);
    };
 }

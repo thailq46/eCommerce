@@ -115,7 +115,13 @@ const ReasonStatus = {
    MISDIRECTED_REQUEST: "Misdirected Request",
 };
 
+const HEADER = {
+   API_KEY: "x-api-key",
+   CLIENT_ID: "x-client-id",
+   AUTHORIZATION: "authorization",
+};
 module.exports = {
    StatusCode,
    ReasonStatus,
+   HEADER,
 };

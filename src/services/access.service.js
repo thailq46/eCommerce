@@ -128,6 +128,12 @@ class AccessService {
          metadata: null,
       };
    };
+
+   static logout = async (keyStore) => {
+      const delKey = await KeyTokenService.removeKeyById(keyStore._id);
+      console.log("AccessService ~ logout= ~ delKey", delKey);
+      return null;
+   };
 }
 
 module.exports = AccessService;

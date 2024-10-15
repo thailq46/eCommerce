@@ -1,5 +1,6 @@
 "use strict";
 const keyTokenModel = require("../models/keytoken.model");
+const {Types} = require("mongoose");
 
 class KeyTokenService {
    // publicKey nó được sinh ra bởi thuật toán bất đối xứng lên nó là Buffer và chưa đc hash nên phải chuyển thành string trước khi lưu vào DB
@@ -37,6 +38,16 @@ class KeyTokenService {
       } catch (error) {
          return error;
       }
+   };
+
+   static findByUserId = async (userId) => {
+      return await keyTokenModel
+         .findOne({user: new Types.ObjectId(userId)})
+         .lean();
+   };
+
+   static removeKeyById = async (id) => {
+      return await keyTokenModel.findByIdAndDelete(id);
    };
 }
 
